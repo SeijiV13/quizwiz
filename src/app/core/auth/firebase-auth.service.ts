@@ -38,7 +38,7 @@ export class FirebaseAuthService {
         this.ngZone.run(() => {
           this.router.navigate(['dashboard']);
         });
-        this.SetUserData(result.user);
+        this.setUserData(result.user);
       }).catch((error) => {
         window.alert(error.message)
       })
@@ -83,7 +83,7 @@ export class FirebaseAuthService {
 
   // Sign in with Google
   googleAuth() {
-    return this.AuthLogin(new firebase.auth.GoogleAuthProvider());
+    return this.authLogin(new firebase.auth.GoogleAuthProvider());
   }
 
   // Auth logic to run auth providers

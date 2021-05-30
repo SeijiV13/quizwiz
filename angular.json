@@ -30,7 +30,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/assets/styles/webpage.scss"
+              "src/assets/styles/webpage.scss",
+              "src/assets/styles/webapp.scss"
             ],
             "scripts": [],
             "serviceWorker": true,

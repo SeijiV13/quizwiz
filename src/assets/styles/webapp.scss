@@ -1,0 +1,23 @@
+.third-party-button {
+  padding: 10px;
+  border-style: solid;
+  border-width: 1px;
+  width: 300px;
+  margin: auto;
+  border-color: #a7a7a7;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+     background: #d4d4d4
+  }
+}
+
+.google-logo {
+  width: 25px;
+  height: 25px;
+  float: left;
+  background: url("../images/google-icon.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
