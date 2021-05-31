@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Router } from "@angular/router";
 import { User } from 'src/app/shared/models/user-model';
 import firebase from 'firebase/app';
+import { ToastrService } from 'ngx-toastr';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +16,8 @@ export class FirebaseAuthService {
     public afs: AngularFirestore,   // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
-    public ngZone: NgZone,// NgZone service to remove outside scope warning
+    public ngZone: NgZone,
+    public toastr: ToastrService// NgZone service to remove outside scope warning
   ) {
     /* Saving user data in localstorage when
     logged in and setting up null when logged out */
@@ -40,7 +42,7 @@ export class FirebaseAuthService {
         });
         this.setUserData(result.user);
       }).catch((error) => {
-        window.alert(error.message)
+        this.toastr.error(error.message, "Error");
       })
   }
 
@@ -53,7 +55,7 @@ export class FirebaseAuthService {
         this.sendVerificationMail();
         this.setUserData(result.user);
       }).catch((error) => {
-        window.alert(error.message)
+        this.toastr.error(error.message, "Error");
       })
   }
 
@@ -61,7 +63,7 @@ export class FirebaseAuthService {
   sendVerificationMail() {
     return firebase.auth().currentUser.sendEmailVerification()
     .then(() => {
-      this.router.navigate(['verify-email-address']);
+      this.router.navigate(['quizapp-verification']);
     })
   }
 
@@ -117,7 +119,7 @@ export class FirebaseAuthService {
   }
 
   // Sign out
-  SignOut() {
+  signOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['sign-in']);

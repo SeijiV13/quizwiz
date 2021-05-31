@@ -1,4 +1,6 @@
-import { NgModule } from '@angular/core';
+import { CryptoService } from './shared/crypto/crypto.service';
+import { MessageService } from './core/initializers/message.initializer';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +18,26 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //UI
 import { ToastrModule } from 'ngx-toastr';
+//HTTP
+import {HttpClientModule} from '@angular/common/http';
+
+//Message Initializers
+export function initializeAppSuccess(messageService: MessageService, cryptoService: CryptoService) {
+  return (): Promise<any> => {
+
+    return messageService.InitSuccess().then(data =>{
+      localStorage.setItem('msgscs', cryptoService.encryptData(JSON.stringify(data)));
+    });
+  }
+}
+export function initializeAppError(messageService: MessageService, cryptoService: CryptoService) {
+  return (): Promise<any> => {
+
+    return messageService.InitError().then(data =>{
+      localStorage.setItem('msgerr', cryptoService.encryptData(JSON.stringify(data)));
+    });
+  }
+}
 @NgModule({
   declarations: [
     AppComponent
@@ -38,9 +60,14 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot({
       positionClass: 'toast-top-center',
     }),
+    //HTTP
+    HttpClientModule,
     NgbModule,
   ],
-  providers: [],
+  providers: [MessageService, CryptoService,
+  { provide: APP_INITIALIZER, useFactory: initializeAppSuccess, deps: [MessageService, CryptoService], multi: true},
+  { provide: APP_INITIALIZER, useFactory: initializeAppError, deps: [MessageService, CryptoService], multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

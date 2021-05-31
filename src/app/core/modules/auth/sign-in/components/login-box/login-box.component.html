@@ -11,21 +11,21 @@
       <!-- Login Form -->
       <form [formGroup]="form" (ngSubmit)="submitForm('normal')">
 
-        <input type="text" id="email" class="fadeIn second" name="email" placeholder="Email">
-        <input type="text" id="password" class="fadeIn third" name="login" placeholder="Password">
+        <input type="text" id="email" class="fade-in second" name="email" placeholder="Email">
+        <input [type]="passwordVisible ? 'text' : 'password'" id="password" class="fade-in third" name="login" placeholder="Password">
+        <em class="bi bi-eye" (click)="showPassword()"></em>
         <br><br>
         <div class="third-party-button" (click)="submitForm('google')">
             <div class="google-logo"></div>
             Log in with google
         </div>
         <br>
-        <input type="submit" class="fadeIn fourth" value="Log In">
-
+        <input type="submit" class="fade-in fourth" value="Log In">
       </form>
-      <a class="underlineHover" href="#">Dont have account? Register here</a>
+      <a class="underline-hover" (click)="changeRoute('quizapp-signup')">Dont have account? Register here</a>
       <!-- Remind Passowrd -->
       <div id="formFooter">
-        <a class="underlineHover">Forgot Password?</a>
+        <a class="underline-hover">Forgot Password?</a>
       </div>
 
     </div>

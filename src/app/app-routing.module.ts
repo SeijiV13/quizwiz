@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -6,12 +7,14 @@ const routes: Routes = [
   {
     path: "quizapp",
     loadChildren: () => import("./core/modules/auth/sign-in/sign-in.module")
-    .then(m => m.SignInModule)
+    .then(m => m.SignInModule),
+    data: { animationState: 'One'}
   },
   {
     path: "quizapp-signup",
     loadChildren: () => import("./core/modules/auth/sign-up/sign-up.module")
-    .then(m => m.SignUpModule)
+    .then(m => m.SignUpModule),
+    data: { animationState: 'Two'}
   },
   {
     path: "quizapp-forgot",

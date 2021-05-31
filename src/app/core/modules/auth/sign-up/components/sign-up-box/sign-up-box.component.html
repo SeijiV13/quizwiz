@@ -1,0 +1,27 @@
+<div class="wrapper">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+
+      <!-- Icon -->
+      <div class="first">
+          <em class="bi bi-pen-fill"></em>
+          <a class="login-brand fw-bold">QuizWiz</a>
+      </div>
+      <br>
+      <!-- Login Form -->
+      <form [formGroup]="form" (ngSubmit)="submitForm('register')">
+
+        <input formControlName="email" type="text" id="email" class="second" name="email" placeholder="Email">
+        <input formControlName="password" [type]="passwordVisible ? 'text' : 'password'" id="password" class="third" name="login" placeholder="Password">
+        <em class="bi bi-eye" (click)="showPassword('password')"></em>
+        <input formControlName="confirmPassword" [type]="confirmPasswordVisible ? 'text' : 'password'" id="confirmpassword" class="third" name="confirmpassword" placeholder="Confirm Password">
+        <em class="bi bi-eye" (click)="showPassword('confirm')"></em>
+        <br><br>
+        <input type="submit" class="fourth" value="Register">
+
+      </form>
+      <a class="underline-hover" (click)="changeRoute('quizapp')">Already have an account? Sign in here</a>
+      <!-- Remind Passowrd -->
+      <br><br>
+    </div>
+  </div>

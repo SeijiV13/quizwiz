@@ -12,6 +12,9 @@ export class LoginBoxComponent implements OnInit {
     {action : string,
     value: {email: string, password: string}}>();
   form: FormGroup;
+  //flags
+  passwordVisible = false;
+  @Output() emitRoute = new EventEmitter<string>();
   constructor(
     private formBuilder: FormBuilder,
     private toastr: ToastrService
@@ -31,8 +34,17 @@ export class LoginBoxComponent implements OnInit {
   submitForm(action: string) {
     if(this.form.valid || action == 'google') {
       this.emitLogin.emit({action, value: this.form.getRawValue()});
+      return;
     }
     this.toastr.error("Error", "test");
+  }
+
+  changeRoute(route: string) {
+    this.emitRoute.emit(route);
+  }
+
+  showPassword() {
+    this.passwordVisible = !this.passwordVisible;
   }
 
 }
