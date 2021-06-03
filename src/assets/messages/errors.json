@@ -1,3 +1,7 @@
 {
 
+  "forms" : {
+    "email": "You have entered an invalid email",
+    "required": "Field is required"
+  }
 }

@@ -1,3 +1,4 @@
+import { SharedComponentsModule } from './../../../../shared/components/shared-components.module';
 import { SignUpRoutes } from './sign-up.routing';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SignUpBoxComponent
   ],
   imports: [
+    SharedComponentsModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

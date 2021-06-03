@@ -12,7 +12,9 @@
       <form [formGroup]="form" (ngSubmit)="submitForm('register')">
 
         <input formControlName="email" type="text" id="email" class="second" name="email" placeholder="Email">
+        <app-form-error-display [form]="form" key="email"></app-form-error-display>
         <input formControlName="password" [type]="passwordVisible ? 'text' : 'password'" id="password" class="third" name="login" placeholder="Password">
+        <app-form-error-display [form]="form" key="password"></app-form-error-display>
         <em class="bi bi-eye" (click)="showPassword('password')"></em>
         <input formControlName="confirmPassword" [type]="confirmPasswordVisible ? 'text' : 'password'" id="confirmpassword" class="third" name="confirmpassword" placeholder="Confirm Password">
         <em class="bi bi-eye" (click)="showPassword('confirm')"></em>

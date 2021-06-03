@@ -125,4 +125,6 @@ export class FirebaseAuthService {
       this.router.navigate(['sign-in']);
     })
   }
+
+
 }

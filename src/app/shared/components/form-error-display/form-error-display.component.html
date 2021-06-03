@@ -1,0 +1,6 @@
+<div *ngIf="errors.length != 0">
+  <em class="bi bi-x-circle-fill"></em>
+  <ul class="list-errors">
+    <li *ngFor="let error of errors">{{error}}</li>
+  </ul>
+</div>

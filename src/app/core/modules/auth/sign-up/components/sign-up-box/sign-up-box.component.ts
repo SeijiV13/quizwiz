@@ -41,8 +41,6 @@ export class SignUpBoxComponent implements OnInit {
       this.emitRegister.emit({action, value: this.form.getRawValue()});
       return;
     }
-     console.log(Object.keys(this.form.controls));
-
   }
 
   changeRoute(route: string) {

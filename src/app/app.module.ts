@@ -40,7 +40,7 @@ export function initializeAppError(messageService: MessageService, cryptoService
 }
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
