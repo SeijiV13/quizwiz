@@ -11,6 +11,7 @@ import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 export class FormErrorDisplayComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() form: FormGroup
   @Input() key: string;
+  @Input() submitted = false;
   errors = [];
   constructor(private messageRetriever: MessageRetrieverService<Array<string>>) { }
 
@@ -18,22 +19,27 @@ export class FormErrorDisplayComponent implements OnInit, AfterViewInit, OnChang
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes.form);
+
   }
 
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
-    const formControl = this.form.get(this.key)
+    let formControl = null;
+    if(this.key) {
+      formControl = this.form.get(this.key)
+    } else {
+      formControl = this.form;
+    }
     formControl.valueChanges.subscribe((data) => {
       this.errors = [];
       this.checkError(formControl);
     })
   }
 
-  checkError(formControl: AbstractControl)  {
+  checkError(formControl)  {
       const errorObject = formControl.errors;
-      if(errorObject && formControl.touched)
+      if(errorObject && this.submitted)
       this.getErrorMessages(Object.keys(errorObject), errorObject);
   }
 

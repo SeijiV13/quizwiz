@@ -12,6 +12,7 @@ export class SignUpBoxComponent implements OnInit {
     value: { email: string , password: string}}>();
   @Output() emitRoute = new EventEmitter<string>();
   form: FormGroup;
+  submitted = false;
   //flags
   passwordVisible = false;
   confirmPasswordVisible = false;
@@ -37,6 +38,7 @@ export class SignUpBoxComponent implements OnInit {
 
 
   submitForm(action: string) {
+    this.submitted = true;
     if(this.form.valid) {
       this.emitRegister.emit({action, value: this.form.getRawValue()});
       return;
